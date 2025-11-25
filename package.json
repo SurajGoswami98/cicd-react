@@ -10,6 +10,7 @@
     "lint:fix": "eslint ./src --fix",
     "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,json,css,md}\"",
     "preview": "vite preview",
+    "test": "echo \"No tests yet\"",
     "prepare": "husky"
   },
   "dependencies": {

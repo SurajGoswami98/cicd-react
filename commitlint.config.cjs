@@ -3,29 +3,32 @@ module.exports = {
     rules: {
         'header-min-length': [2, 'always', 20],
         'header-case-start-capital': [2, 'always'],
-        'header-end-period': [2, 'never']
+        'header-end-period': [2, 'always']
     },
     plugins: [
         {
             rules: {
-                'header-min-length': ((raw) => {
+                'header-min-length': (raw) => {
+                    const header = raw.header
                     return [
-                        raw.length >= 20,
+                        header.length >= 20,
                         'Commit message must be at least 20 characters long'
                     ]
-                }),
-                'header-case-start-capital': ((raw) => {
+                },
+                'header-case-start-capital': (raw) => {
+                    const header = raw.header
                     return [
-                        /^[A-Z]/.test(raw),
+                        /^[A-Z]/.test(header),
                         'Commit message must start with a capital letter'
                     ]
-                }),
-                'header-end-period': ((raw) => {
+                },
+                'header-end-period': (raw) => {
+                    const header = raw.header
                     return [
-                        /\.$/.test(raw),
-                        'Commit message must not end with a period'
+                        /\.$/.test(header),
+                        'Commit message must end with a period'
                     ]
-                })
+                }
             }
         }
     ]
